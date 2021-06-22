@@ -4,4 +4,4 @@
   
 <h3>pip uninstall -r requirements.txt</h3>
   
-<h3>pip uninstall --yes requirements.txt</h3>
+<h3>pip uninstall -y -r requirements.txt</h3>
