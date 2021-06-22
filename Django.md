@@ -5,6 +5,8 @@
 <h3>pip install mysqlclient</h3>
   
 <h3>pip install mysqlclient==1.3.6</h3>
+  
+<h3>pip freeze > requirements.txt</h3>
 
 <h3>pip install -r requirements.txt</h3>
   
