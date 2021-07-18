@@ -1,3 +1,7 @@
+<h3>python -m venv venv<h3>
+  
+<h3>venv\Scripts\activate<h3>
+
 <h3>pip install django<h3>
   
 <h3>pip install Django==3.2.4</h3>
