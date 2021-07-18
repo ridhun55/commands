@@ -6,6 +6,10 @@
   
 <h3>pip install Django==3.2.4</h3>
   
+<h3>django-admin startproject BlogProject .</h3>
+  
+<h3>django-admin startapp BlogApp</h3>
+  
 <h3>pip install mysqlclient</h3>
   
 <h3>pip install mysqlclient==1.3.6</h3>
