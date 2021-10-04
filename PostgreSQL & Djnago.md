@@ -20,6 +20,20 @@ DATABASES = {
    }
 }
 ```
+# Example
+
+```python
+DATABASES = {
+   'default': {
+       'ENGINE': 'django.db.backends.postgresql',
+       'NAME': 'blogDB',
+       'USER': 'postgres',
+       'PASSWORD': 'silicon',
+       'HOST': 'localhost',
+       'PORT': '5432',
+   }
+}
+```
 
 # Migarte
 
