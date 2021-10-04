@@ -1,8 +1,12 @@
 # Setting up PostgreSQL in Django 
 
+# Install psycopy2 package
+
 ```shell
-   pip install psycopg2
+pip install psycopg2
 ```
+
+# Settings
 
 ```python
 DATABASES = {
