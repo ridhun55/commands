@@ -21,3 +21,12 @@ DATABASES = {
 }
 ```
 
+# migarte
+
+```shell
+python manage.py makemigrations
+```
+```shell
+python manage.py migrate
+```
+
