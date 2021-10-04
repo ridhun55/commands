@@ -1,8 +1,10 @@
 # Setting up PostgreSQL in Django 
 
---> pip install psycopg2
+```shell
+   pip install psycopg2
+```
 
-
+```python
 DATABASES = {
    'default': {
        'ENGINE': 'django.db.backends.postgresql',
@@ -13,4 +15,5 @@ DATABASES = {
        'PORT': '<database_port>',
    }
 }
+```
 
