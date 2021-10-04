@@ -21,7 +21,7 @@ DATABASES = {
 }
 ```
 
-# migarte
+# Migarte
 
 ```shell
 python manage.py makemigrations
