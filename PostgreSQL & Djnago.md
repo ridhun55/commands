@@ -10,10 +10,10 @@ pip install psycopg2
 ```shell
 pip install Pillow
 ```
-# Install Pillow package
+# Install ckeditor package
 
 ```shell
-pip install Pillow
+pip install django-ckeditor
 ```
 
 # Settings
