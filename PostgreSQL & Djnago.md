@@ -5,6 +5,16 @@
 ```shell
 pip install psycopg2
 ```
+# Install Pillow package
+
+```shell
+pip install Pillow
+```
+# Install Pillow package
+
+```shell
+pip install Pillow
+```
 
 # Settings
 
