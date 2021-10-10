@@ -23,3 +23,15 @@
 <h3>pip uninstall -y -r requirements.txt</h3>
   
 <h3>deactivate</h3>
+  
+# git commands 
+  
+```shell
+echo "# Ridhun_Django_Blog_and_PSC" >> README.md
+git init
+git add README.md
+git commit -m "first commit"
+git branch -M main
+git remote add origin https://github.com/ridhun55/Ridhun_Django_Blog_and_PSC.git
+git push -u origin main
+```
