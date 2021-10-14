@@ -41,6 +41,7 @@ python manage.py runserver
 pip install django-cors-headers
 ```
 add it to your installed apps & middleware class
+```
 INSTALLED_APPS = [
     ...,
     "corsheaders",
@@ -53,3 +54,4 @@ MIDDLEWARE = [
     "django.middleware.common.CommonMiddleware",
     ...,
 ]
+```
