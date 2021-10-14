@@ -108,6 +108,34 @@ python manage.py makemigrations
 python manage.py migrate
 ```
 
+# Add EmployeeApp / urls.py
+
+```shell
+from django.conf.urls import url
+from EmployeeApp import views
+
+urlpatterns[
+   url(r'^department/$',views.departmentApi),
+   url(r'^department/([0-9]+)$',views.departmentApi)
+]
+```
+
+# Include it into main urls.py
+```shell
+
+from django.contrib import admin
+from django.urls import path,include
+from django.conf.urls import url
+
+import EmployeeApp
+
+urlpatterns = [
+    path('admin/', admin.site.urls),
+    url(r'^',include('EmployeeApp.urls'))
+]
+
+```
+
 # Add serializer
 1. add a file in EmployeeApp / serializers.py 
 
@@ -131,7 +159,52 @@ class EmployeeSerializer(serializers.ModelSerializer):
                'PhotoFileName')
 ```
 
-2.write view.py for api
+2.write view.py for api for GET,POST,PUT,DELETE
+```python
+from django.shortcuts import render
+from django.views.decorators.csrf import csrf_exempt
+from rest_framework.parsers import JSONParser
+from EmployeeApp.models import Departments,Employees
+from EmployeeApp.serializers import DepartmentSerializer,EmployeeSerializer
+from django.http.response import JsonResponse
+
+
+@csrf_exempt
+def DepartmentApi(request,id=0):
+   if request.method == 'GET':
+      departments = Departments.objects.all()
+      departments_serializer = DepartmentSerializer(departments, many=True)
+      return JsonResponse(departments_serializer.data,safe=False)
+   
+   elif request.method=='POST':
+      department_data = JSONParser().parse(request)
+      department_serializer = DepartmentSerializer(data=department_data)
+      if department_serializer.is_valid():
+         department_serializer.save()
+         return JsonResponse("Add Successfully!!", safe=False)
+      return JsonResponse("Faild to Add", safe=False)
+   
+   elif request.method=='PUT':
+      department_data = JSONParser().parse(request)
+      department = Departments.objects.get(DepartmentId = department_data['DepartmentId'])
+      department_serializer = DepartmentSerializer(department, data = department_data)
+      if department_serializer.is_valid():
+         department_serializer.save()
+         return JsonResponse("Updated Successfully!!", safe=False)
+      return JsonResponse("Faild to Update", safe=False)
+   
+   elif request.method=='DELETE':
+      department = Departments.objects.get(DepartmentId = id)
+      department.delete()
+      return JsonResponse("Deleted Successfully!!", safe=False)
+     
+```
+3. Run DjangoApp 
+```shell
+python manage.py runserver
+```
+4. Copy Localhost link
+5. Open POSTMAN SOFTWARE
 
 
 
