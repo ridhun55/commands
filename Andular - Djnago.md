@@ -81,7 +81,7 @@ INSTALLED_APPS = [
 ]
 ```
 
-===============================================================================================
+======================================================
 
 # Create Model in EmployeeApp/models.py
 
@@ -100,7 +100,38 @@ class Employees(models.Model):
    PhotoFileName = models.CharField(max_length=100)
 ```
 
+# migrate
+```shell
+python manage.py makemigrations
+```
+```shell
+python manage.py migrate
+```
 
+# Add serializer
+1. add a file in EmployeeApp / serializers.py 
+
+```python
+from rest_framework import serializers
+from EmployeeApp.models import Departments,Employees
+
+class DepartmentSerializer(serializers.ModelSerializer):
+   class meta:
+      model = Departments
+      fields = ('DepartmentId',
+               'DepartmentName')
+      
+class EmployeeSerializer(serializers.ModelSerializer):
+   class meta:
+      model = Employees
+      fields = ('EmployeeId', 
+               'EmployeeName', 
+               'Department', 
+               'DateOfJoining', 
+               'PhotoFileName')
+```
+
+2.write view.py for api
 
 
 
