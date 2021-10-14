@@ -6,3 +6,7 @@ npm install -g @angular/cli
 ```shell
 ng --version
 ```
+# Create Venv for django
+```shell
+python -m venv myenv
+```
