@@ -104,7 +104,8 @@ from django.http import JsonResponse
 def apiOverview(request):
    return JsonResponse("API overview page", safe=False)
 ```
-# 2. Second Test API_App / View.py ( add 'api_view' decorator) [http://127.0.0.1:8000/api/]
+# 2. Second Test API_App / View.py ( add 'api_view' decorator) 
+[http://127.0.0.1:8000/api/]
 ```shell
 from django.shortcuts import render
 from django.http import JsonResponse
@@ -167,7 +168,8 @@ def taskList(request):
    return Response(serializer.data)
 ```
 
-# 3. write API_App / urls.py for the 'taskList' [http://127.0.0.1:8000/api/task-list/]
+# 3. write API_App / urls.py for the 'taskList' 
+[http://127.0.0.1:8000/api/task-list/]
 ```shell
 from django.urls import path
 from . import views
@@ -215,7 +217,8 @@ def taskDetail(request, pk):
    return Response(serializer.data)
 ```
 
-# 5. write API_App / urls.py for the 'taskDetail' [http://127.0.0.1:8000/api/task-detail/1/]
+# 5. write API_App / urls.py for the 'taskDetail' 
+[http://127.0.0.1:8000/api/task-detail/1/]
 ```shell
 from django.urls import path
 from . import views
@@ -270,7 +273,8 @@ def taskCreate(request):
       serializer.save()
    return Response(serializer.data)
 ```
-# 7. write API_App / urls.py for the 'taskCreate' [http://127.0.0.1:8000/api/task-create/]
+# 7. write API_App / urls.py for the 'taskCreate' 
+[http://127.0.0.1:8000/api/task-create/]
 ```shell
 from django.urls import path
 from . import views
@@ -335,7 +339,8 @@ def taskUpdate(request, pk):
       serializer.save()
    return Response(serializer.data)
 ```
-# 9. write API_App / urls.py for the 'taskUpdate' [http://127.0.0.1:8000/api/task-update/1]
+# 9. write API_App / urls.py for the 'taskUpdate' 
+[http://127.0.0.1:8000/api/task-update/1]
 ```shell
 from django.urls import path
 from . import views
@@ -408,7 +413,8 @@ def taskDelete(request, pk):
    task.delete()
    return Response("Deleted Successfully")
 ```
-# 9. write API_App / urls.py for the 'taskDelete' [http://127.0.0.1:8000/api/task-delete/1]
+# 9. write API_App / urls.py for the 'taskDelete' 
+[http://127.0.0.1:8000/api/task-delete/1]
 ```shell
 from django.urls import path
 from . import views
