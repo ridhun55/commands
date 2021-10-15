@@ -96,7 +96,8 @@ urlpatterns = [
 
 ```
 
-# 1. First Test API_App / View.py [http://127.0.0.1:8000/api/]
+# 1. First Test API_App / View.py 
+[http://127.0.0.1:8000/api/]
 ```shell
 from django.shortcuts import render
 from django.http import JsonResponse
