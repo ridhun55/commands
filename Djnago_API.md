@@ -429,3 +429,12 @@ urlpatterns = [
     path('task-delete/<str:pk>/', views.taskDelete, name='task-delete'),
 ]
 ```
+
+# All Links
+```shell
+task-list/
+task-detail/2
+task-create/
+task-update/1
+task-delete/2
+```
