@@ -37,7 +37,17 @@ pip uninstall -y -r requirements.txt
 ```python
 deactivate
 ```
-
+# Django API
+```python
+pip install djangorestframework
+```
+Add 'rest_framework' to your INSTALLED_APPS setting.
+```python
+INSTALLED_APPS = [
+    ...
+    'rest_framework',
+]
+```
   
 # git commands 
   
