@@ -1,28 +1,43 @@
-<h3>python -m venv venv<h3>
-  
-<h3>venv\Scripts\activate<h3>
+```python
+python -m venv venv
+```
+```python
+venv\Scripts\activate
+```
+```python
+pip install django
+```
+```python
+pip install Django==3.2.4
+```
+```python
+django-admin startproject BlogProject .
+```
+```python
+django-admin startapp BlogApp
+```
+```python
+pip install mysqlclient
+```
+```python
+pip install mysqlclient==1.3.6
+```
+```python
+pip freeze > requirements.txt
+```
+```python
+pip install -r requirements.txt
+```
+```python
+pip uninstall -r requirements.txt
+```
+```python
+pip uninstall -y -r requirements.txt
+```
+```python
+deactivate
+```
 
-<h3>pip install django<h3>
-  
-<h3>pip install Django==3.2.4</h3>
-  
-<h3>django-admin startproject BlogProject .</h3>
-  
-<h3>django-admin startapp BlogApp</h3>
-  
-<h3>pip install mysqlclient</h3>
-  
-<h3>pip install mysqlclient==1.3.6</h3>
-  
-<h3>pip freeze > requirements.txt</h3>
-
-<h3>pip install -r requirements.txt</h3>
-  
-<h3>pip uninstall -r requirements.txt</h3>
-  
-<h3>pip uninstall -y -r requirements.txt</h3>
-  
-<h3>deactivate</h3>
   
 # git commands 
   
