@@ -1,78 +1,38 @@
-#Install the Angular CLI
-```shell
-npm install -g @angular/cli
-```
-# Version
-```shell
-ng --version
-```
+
 # Create Venv for django
 ```shell
-python -m venv myenv
+python -m venv venv
 ```
 # Activate myenv 
 ```shell
-myenv\Script\activate
+venv\Script\activate
 ```
 # Install Djnago
 ```shell
 pip install django
 ```
+
+# Create Django Project (API_Project)
+```shell
+django-admin startproject API_Project 
+```
+# Create Django App (API_APP)
+```shell
+django-admin startapp API_APP 
+```
+add API_APP into Settings.py
+```shel
+INSTALLED_APPS = [
+    ...,
+    'API_APP.apps.ApiAppConfig',
+    ...,
+]
+```
 # Install Django Rest Framework
 ```shell
 pip install djangorestframework
 ```
-# Create Django Project
-```shell
-django-admin startproject DjangoAPI 
-```
-```shell
-cd DjangoAPI 
-```
-```shell
-code . 
-```
-# Run Django Project
-```shell
-python manage.py runserver
-```
-# Install Django Core Header Package
-```shell
-pip install django-cors-headers
-```
-add it to your installed apps, CORS_ORIGIN_ALLOW_ALL & middleware class 
-```
-INSTALLED_APPS = [
-    ...,
-    "corsheaders",
-    ...,
-]
-
-CORS_ORIGIN_ALLOW_ALL = True
-
-MIDDLEWARE = [
-    ...,
-    "corsheaders.middleware.CorsMiddleware",
-    "django.middleware.common.CommonMiddleware",
-    ...,
-]
-```
-
-# Create Django App
-```shell
-python manage.py startapp EmployeeApp
-```
-
-# Register EmployeeApp in Settings.py
-```
-INSTALLED_APPS = [
-    ...,
-    "EmployeeApp.apps.EmployeeappConfig",
-    ...,
-]
-```
-
-# Register Rest Framework in Settings.py
+# Add 'rest_framework' to your INSTALLED_APPS setting.
 ```
 INSTALLED_APPS = [
     ...,
@@ -80,24 +40,29 @@ INSTALLED_APPS = [
     ...,
 ]
 ```
+# Run Django Project
+```shell
+python manage.py runserver
+```
+
+
+
+
 
 ======================================================
 
-# Create Model in EmployeeApp/models.py
+# Create Model (Task) in API_APP
 
 ```python
 from django.db import models
 
-class Departments(models.Model):
-   DepartmentId = models.AutoField(primary_key=True)
-   DepartmentName = models.CharField(max_length=100)
-    
-class Employees(models.Model):
-   EmployeeId = models.AutoField(primary_key=True)
-   EmployeeName = models.CharField(max_length=100)
-   Department = models.CharField(max_length=100)
-   DateOfJoining = models.DateField()
-   PhotoFileName = models.CharField(max_length=100)
+class Task(models.Model):
+   title = models.CharField(max_length=200)
+   completed = models.BooleanField(default=False, blank=True, null=True)
+   
+   def __str__(self):
+      return self.title
+
 ```
 
 # migrate
@@ -108,103 +73,352 @@ python manage.py makemigrations
 python manage.py migrate
 ```
 
-# Add EmployeeApp / urls.py
+# Add API_Project / urls.py
 
 ```shell
-from django.conf.urls import url
-from EmployeeApp import views
-
-urlpatterns[
-   url(r'^department/$',views.departmentApi),
-   url(r'^department/([0-9]+)$',views.departmentApi)
-]
-```
-
-# Include it into main urls.py
-```shell
-
 from django.contrib import admin
 from django.urls import path,include
-from django.conf.urls import url
-
-import EmployeeApp
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    url(r'^',include('EmployeeApp.urls'))
+    path('api/', include('API_APP.urls')),
+]
+```
+# Add API_App / urls.py
+
+```shell
+from django.urls import path
+from . import views
+
+urlpatterns = [
+    path('', views.apiOverview, name='api-overview'),
 ]
 
 ```
 
-# Add serializer
-1. add a file in EmployeeApp / serializers.py 
+# 1. First Test API_App / View.py [http://127.0.0.1:8000/api/]
+```shell
+from django.shortcuts import render
+from django.http import JsonResponse
 
+def apiOverview(request):
+   return JsonResponse("API overview page", safe=False)
+```
+# 2. Second Test API_App / View.py ( add 'api_view' decorator) [http://127.0.0.1:8000/api/]
+```shell
+from django.shortcuts import render
+from django.http import JsonResponse
+
+from rest_framework.decorators import api_view
+from rest_framework.response import Response
+
+@api_view(['GET'])
+def apiOverview(request):
+   api_test = {
+      'name' : 'ridhun',
+      'age' : 27,
+      'class' : 'MSC',
+   }
+   return Response(api_test)
+ 
+```
+============= serializers =============================
+
+# 1. Add API_App / serializers.py
 ```python
+from django.db import models
+from django.db.models import fields
 from rest_framework import serializers
-from EmployeeApp.models import Departments,Employees
+from . models import Task
 
-class DepartmentSerializer(serializers.ModelSerializer):
-   class meta:
-      model = Departments
-      fields = ('DepartmentId',
-               'DepartmentName')
-      
-class EmployeeSerializer(serializers.ModelSerializer):
-   class meta:
-      model = Employees
-      fields = ('EmployeeId', 
-               'EmployeeName', 
-               'Department', 
-               'DateOfJoining', 
-               'PhotoFileName')
+class TaskSerializer(serializers.ModelSerializer):
+   class Meta:
+      model = Task
+      fields = '__all__'
 ```
 
-2.write view.py for api for GET,POST,PUT,DELETE
+# 2. write API_App / view.py for the 'taskList' 
 ```python
 from django.shortcuts import render
-from django.views.decorators.csrf import csrf_exempt
-from rest_framework.parsers import JSONParser
-from EmployeeApp.models import Departments,Employees
-from EmployeeApp.serializers import DepartmentSerializer,EmployeeSerializer
-from django.http.response import JsonResponse
+from django.http import JsonResponse
+from rest_framework import serializers
+
+from rest_framework.decorators import api_view
+from rest_framework.response import Response
+
+from . models import Task
+from . serializers import TaskSerializer
 
 
-@csrf_exempt
-def DepartmentApi(request,id=0):
-   if request.method == 'GET':
-      departments = Departments.objects.all()
-      departments_serializer = DepartmentSerializer(departments, many=True)
-      return JsonResponse(departments_serializer.data,safe=False)
-   
-   elif request.method=='POST':
-      department_data = JSONParser().parse(request)
-      department_serializer = DepartmentSerializer(data=department_data)
-      if department_serializer.is_valid():
-         department_serializer.save()
-         return JsonResponse("Add Successfully!!", safe=False)
-      return JsonResponse("Faild to Add", safe=False)
-   
-   elif request.method=='PUT':
-      department_data = JSONParser().parse(request)
-      department = Departments.objects.get(DepartmentId = department_data['DepartmentId'])
-      department_serializer = DepartmentSerializer(department, data = department_data)
-      if department_serializer.is_valid():
-         department_serializer.save()
-         return JsonResponse("Updated Successfully!!", safe=False)
-      return JsonResponse("Faild to Update", safe=False)
-   
-   elif request.method=='DELETE':
-      department = Departments.objects.get(DepartmentId = id)
-      department.delete()
-      return JsonResponse("Deleted Successfully!!", safe=False)
-     
+@api_view(['GET'])
+def apiOverview(request):
+   api_test = {
+      'name' : 'ridhun',
+      'age' : 27,
+      'class' : 'MSC',
+   }
+   return Response(api_test)
+
+
+@api_view(['GET'])    
+def taskList(request):
+   task = Task.objects.all()
+   serializer = TaskSerializer(task, many=True)
+   return Response(serializer.data)
 ```
-3. Run DjangoApp 
+
+# 3. write API_App / urls.py for the 'taskList' [http://127.0.0.1:8000/api/task-list/]
 ```shell
-python manage.py runserver
+from django.urls import path
+from . import views
+
+urlpatterns = [
+    path('', views.apiOverview, name='api-overview'),
+    path('task-list/', views.taskList, name='task-list'),
+]
 ```
-4. Copy Localhost link
-5. Open POSTMAN SOFTWARE
+
+# 4. write API_App / view.py for the 'taskDetail' 
+```python
+from django.shortcuts import render
+from django.http import JsonResponse
+from rest_framework import serializers
+
+from rest_framework.decorators import api_view
+from rest_framework.response import Response
+
+from . models import Task
+from . serializers import TaskSerializer
 
 
+@api_view(['GET'])
+def apiOverview(request):
+   api_test = {
+      'name' : 'ridhun',
+      'age' : 27,
+      'class' : 'MSC',
+   }
+   return Response(api_test)
 
+
+@api_view(['GET'])      
+def taskList(request):
+   task = Task.objects.all()
+   serializer = TaskSerializer(task, many=True)
+   return Response(serializer.data)
+
+
+@api_view(['GET'])      
+def taskDetail(request, pk):
+   task = Task.objects.get(id=pk)
+   serializer = TaskSerializer(task, many=False)
+   return Response(serializer.data)
+```
+
+# 5. write API_App / urls.py for the 'taskDetail' [http://127.0.0.1:8000/api/task-detail/1/]
+```shell
+from django.urls import path
+from . import views
+
+urlpatterns = [
+    path('', views.apiOverview, name='api-overview'),
+    path('task-list/', views.taskList, name='task-list'),
+    path('task-detail/<str:pk>/', views.taskDetail, name='task-detail'),
+]
+```
+# 6. write API_App / view.py for the 'taskCreate'
+```shell
+from django.shortcuts import render
+from django.http import JsonResponse
+from rest_framework import serializers
+
+from rest_framework.decorators import api_view
+from rest_framework.response import Response
+
+from . models import Task
+from . serializers import TaskSerializer
+
+
+@api_view(['GET'])
+def apiOverview(request):
+   api_test = {
+      'name' : 'ridhun',
+      'age' : 27,
+      'class' : 'MSC',
+   }
+   return Response(api_test)
+
+
+@api_view(['GET'])      
+def taskList(request):
+   task = Task.objects.all()
+   serializer = TaskSerializer(task, many=True)
+   return Response(serializer.data)
+
+
+@api_view(['GET'])      
+def taskDetail(request, pk):
+   task = Task.objects.get(id=pk)
+   serializer = TaskSerializer(task, many=False)
+   return Response(serializer.data)
+
+
+@api_view(['POST'])      
+def taskCreate(request):
+   serializer = TaskSerializer(data = request.data)
+   if serializer.is_valid():
+      serializer.save()
+   return Response(serializer.data)
+```
+# 7. write API_App / urls.py for the 'taskCreate' [http://127.0.0.1:8000/api/task-create/]
+```shell
+from django.urls import path
+from . import views
+
+urlpatterns = [
+    path('', views.apiOverview, name='api-overview'),
+    path('task-list/', views.taskList, name='task-list'),
+    path('task-detail/<str:pk>/', views.taskDetail, name='task-detail'),
+    path('task-create/', views.taskCreate, name='task-create'),
+]
+```
+# 8. write API_App / view.py for the 'taskUpdate'
+```shell
+from django.shortcuts import render
+from django.http import JsonResponse
+from rest_framework import serializers
+
+from rest_framework.decorators import api_view
+from rest_framework.response import Response
+
+from . models import Task
+from . serializers import TaskSerializer
+
+
+@api_view(['GET'])
+def apiOverview(request):
+   api_test = {
+      'name' : 'ridhun',
+      'age' : 27,
+      'class' : 'MSC',
+   }
+   return Response(api_test)
+
+
+@api_view(['GET'])      
+def taskList(request):
+   task = Task.objects.all()
+   serializer = TaskSerializer(task, many=True)
+   return Response(serializer.data)
+
+
+@api_view(['GET'])      
+def taskDetail(request, pk):
+   task = Task.objects.get(id=pk)
+   serializer = TaskSerializer(task, many=False)
+   return Response(serializer.data)
+
+
+@api_view(['POST'])      
+def taskCreate(request):
+   serializer = TaskSerializer(data = request.data)
+   if serializer.is_valid():
+      serializer.save()
+   return Response(serializer.data)
+
+
+@api_view(['POST'])      
+def taskUpdate(request, pk):
+   task = Task.objects.get(id=pk)
+   serializer = TaskSerializer(instance = task, data = request.data)
+   if serializer.is_valid():
+      serializer.save()
+   return Response(serializer.data)
+```
+# 9. write API_App / urls.py for the 'taskUpdate' [http://127.0.0.1:8000/api/task-update/1]
+```shell
+from django.urls import path
+from . import views
+
+urlpatterns = [
+    path('', views.apiOverview, name='api-overview'),
+    path('task-list/', views.taskList, name='task-list'),
+    path('task-detail/<str:pk>/', views.taskDetail, name='task-detail'),
+    path('task-create/', views.taskCreate, name='task-create'),
+    path('task-update/<str:pk>/', views.taskUpdate, name='task-update'),
+]
+```
+# 8. write API_App / view.py for the 'taskDelete'
+```shell
+from django.shortcuts import render
+from django.http import JsonResponse
+from rest_framework import serializers
+
+from rest_framework.decorators import api_view
+from rest_framework.response import Response
+
+from . models import Task
+from . serializers import TaskSerializer
+
+
+@api_view(['GET'])
+def apiOverview(request):
+   api_test = {
+      'name' : 'ridhun',
+      'age' : 27,
+      'class' : 'MSC',
+   }
+   return Response(api_test)
+
+
+@api_view(['GET'])      
+def taskList(request):
+   task = Task.objects.all()
+   serializer = TaskSerializer(task, many=True)
+   return Response(serializer.data)
+
+
+@api_view(['GET'])      
+def taskDetail(request, pk):
+   task = Task.objects.get(id=pk)
+   serializer = TaskSerializer(task, many=False)
+   return Response(serializer.data)
+
+
+@api_view(['POST'])      
+def taskCreate(request):
+   serializer = TaskSerializer(data = request.data)
+   if serializer.is_valid():
+      serializer.save()
+   return Response(serializer.data)
+
+
+@api_view(['POST'])      
+def taskUpdate(request, pk):
+   task = Task.objects.get(id=pk)
+   serializer = TaskSerializer(instance = task, data = request.data)
+   if serializer.is_valid():
+      serializer.save()
+   return Response(serializer.data)
+
+
+@api_view(['DELETE'])      
+def taskDelete(request, pk):
+   task = Task.objects.get(id=pk)
+   task.delete()
+   return Response("Deleted Successfully")
+```
+# 9. write API_App / urls.py for the 'taskDelete' [http://127.0.0.1:8000/api/task-delete/1]
+```shell
+from django.urls import path
+from . import views
+
+urlpatterns = [
+    path('', views.apiOverview, name='api-overview'),
+    path('task-list/', views.taskList, name='task-list'),
+    path('task-detail/<str:pk>/', views.taskDetail, name='task-detail'),
+    path('task-create/', views.taskCreate, name='task-create'),
+    path('task-update/<str:pk>/', views.taskUpdate, name='task-update'),
+    path('task-delete/<str:pk>/', views.taskDelete, name='task-delete'),
+]
+```
