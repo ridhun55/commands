@@ -21,3 +21,16 @@ cd my-project
 ```shell
 ng serve
 ```
+# File & Folder Structure
+
+```shell
+package.json
+node_modules
+scr folder
+|--- apps
+|--- assets
+|--- environments
+|--- index.html
+|--- main.js
+|--- style.css
+```
