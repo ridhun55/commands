@@ -89,7 +89,7 @@ add "<app-footer></app-footer>" inside "app.component.html"
 ```shell
 <h1 class="text-red">footer works!</h1>
 ```
-2. write style in footer.component.ts using 'backtick'
+2. write style in "footer.component.ts" inside 'backtick'
 ```shell
 @Component({
   selector: 'app-footer',
@@ -101,3 +101,75 @@ add "<app-footer></app-footer>" inside "app.component.html"
   ]
 })
 ```
+
+# Create component with Inline-template 
+```shell
+ng g c footer --inline-template
+```
+add "<app-students></app-students>" inside "app.component.html"
+1. add class in "template" inside students.component.html
+```shell
+@Component({
+  selector: 'app-students',
+  template: `
+    <h2 class="text-red">
+      students works!
+    </h2>
+  `,
+  styleUrls: ['./students.component.css']
+})
+```
+2. write css for that class inside students.component.css
+```shell
+.text-red{
+   color: blue;
+}
+```
+
+# Create component with Inline-style & Inline-template 
+```shell
+ng g c user --inline-style --inline-template
+```
+<pre>
+it generate only 2 files, they are
+
+|-- user.component.spec.ts 
+|-- user.component.ts 
+</pre>
+add "<app-user></app-user>" inside "app.component.html"
+
+1. add "style" and "template" inside user.component.html
+```shell
+@Component({
+  selector: 'app-user',
+  template: `
+    <h1 class="text-yellow">
+      user works!
+    </h1>
+  `,
+  styles: [
+    `.text-yellow{
+      color:yellow;
+    }`
+  ]
+})
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
