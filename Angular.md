@@ -36,7 +36,7 @@ src
 
 </pre>
 # Interpolation & Values
-1. In app.component.ts
+1. In "app.component.ts"
 ```shell
 import { Component } from '@angular/core';
 
@@ -54,7 +54,7 @@ export class AppComponent {
 }
 
 ```
-2. In app.component.html
+2. In "app.component.html"
 ```shell
 <h1>Hello ! {{ title }}</h1>
 <h1>data :  {{ data }}</h1>
@@ -62,3 +62,42 @@ export class AppComponent {
 <h1>{{ getVal() }}</h1>
 ```
 
+# Create Angular Component
+```shell
+ng generate component header
+```
+or [ in short ]
+```shell
+ng g c header
+``` 
+add "<app-header></app-header>" inside "app.component.html"
+
+# Create component with Inline-style 
+```shell
+ng g c footer --inline-style
+```
+<pre>
+it generate only 3 files, they are
+
+|-- footer.component.html 
+|-- footer.component.spec.ts 
+|-- footer.component.ts 
+</pre>
+add "<app-footer></app-footer>" inside "app.component.html"
+
+1. add class in footer.component.html
+```shell
+<h1 class="text-red">footer works!</h1>
+```
+2. write style in footer.component.ts using 'backtick'
+```shell
+@Component({
+  selector: 'app-footer',
+  templateUrl: './footer.component.html',
+  styles: [
+    `.text-red{
+      color:red;
+    }`
+  ]
+})
+```
