@@ -274,15 +274,16 @@ getName(name){
 
 ========== Events =====================
 
+# Basic Events 
 <pre>
-click
-keyup
-keydown
-blur
-input
+1. click
+2. keyup
+3. keydown
+4. blur
+5. input
 
-mouseover
-mouseleave
+6. mouseover
+7. mouseleave
 </pre>
 
 2. Create a fuction with parameter in "app.component.js"
