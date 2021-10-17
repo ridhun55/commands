@@ -58,6 +58,7 @@ export class AppComponent {
 ```shell
 <h1>Hello ! {{ title }}</h1>
 <h1>data :  {{ data }}</h1>
+<h1>sum :  {{ 1+2+3 }}</h1>
 <h1>{{ getVal() }}</h1>
 ```
 
