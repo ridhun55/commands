@@ -221,16 +221,99 @@ ng generate component user-auth/login
 
 
 
+========== Function =====================
+
+# Button Click [function with no parameters]
+1. Create a fuction in "app.component.js"
+```shell
+export class AppComponent {
+  title = 'my-project';
+  getName(){
+    alert("Button Clicked")
+  }
+}
+```
+2. add a button with click event in "app.component.html"
+```shell
+<button (click)="getName()">Click Me</button>
+```
+
+# Button Click [function with parameters]
+1. fuction pass a parameter in "app.component.html"
+```shell
+<button (click)="getName('Ridhun')">Click Me</button>
+```
+2. Create a fuction with parameter in "app.component.js"
+```shell
+export class AppComponent {
+  title = 'my-project';
+  
+  getName(name:string){
+    alert("parameter is : " + name)
+  }
+}
+
+```
+<pre>
+Function Parameters
+name : string   <-- function for string
+name : number   <-- function for number
+name: string | number   <-- function for string or number
+
+<button (click)="getName('Ridhun')">Click Me</button>   <-- for string
+<button (click)="getName(100)">Click Me</button>   <-- for number
+</pre>
+
+NOTE : make "String":"false" in "ts.config.js" file. it will allow function parameters "any". then use
+<pre>
+getName(name){
+    alert("parameter is : " + name)
+  }
+</pre>
 
 
+========== Events =====================
 
+<pre>
+click
+keyup
+keydown
+blur
+input
 
+mouseover
+mouseleave
+</pre>
 
+2. Create a fuction with parameter in "app.component.js"
+```shell
+export class AppComponent {
+  title = 'my-project';
+  
+  getData(val:string){    //  <----- 
+    console.warn(val)
+  }
+}
+```
+2. related Events in "app.component.html"
+```shell
+<button #box1 (click)="getData('click event')">Click Me</button>
+<br>
+<br>
+<input #box2 (keyup)="getData(box2.value)" placeholder="keyup input"/>
+<br>
+<br>
+<input #box3 (keydown)="getData(box3.value)" placeholder="keydown input"/>
+<br>
+<br>
+<input #box4 (blur)="getData(box4.value)" placeholder="blur input"/>
+<br>
+<br>
+<input #box5 (input)="getData(box5.value)" placeholder="input event"/>
 
-
-
-
-
+<h1 (mouseover)="getData('MouserOvered')">Mouse Over Event</h1>
+<h1 (mouseleave)="getData('MouserLeaved')">Mouse Leave Event</h1>
+```
 
 
 
