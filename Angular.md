@@ -21,6 +21,7 @@ cd my-project
 ```shell
 ng serve
 ```
+
 # File & Folder Structure
 <pre>
 
@@ -71,6 +72,8 @@ or [ in short ]
 ng g c header
 ``` 
 add "&lt;app-header	&gt;&lt;/app-header	&gt;" inside "app.component.html"
+
+================== Inline-style & Inline-template =================================
 
 # Create component with Inline-style 
 ```shell
@@ -154,6 +157,8 @@ add "&lt;app-user&gt;&lt;/app-user&gt;" inside "app.component.html"
   ]
 })
 ```
+
+====================================================================
 
 
 
