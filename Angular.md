@@ -70,7 +70,7 @@ or [ in short ]
 ```shell
 ng g c header
 ``` 
-add "<app-header></app-header>" inside "app.component.html"
+add "<code><app-header></app-header></code>" inside "app.component.html"
 
 # Create component with Inline-style 
 ```shell
