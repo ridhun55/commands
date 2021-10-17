@@ -83,7 +83,7 @@ it generate only 3 files, they are
 |-- footer.component.spec.ts 
 |-- footer.component.ts 
 </pre>
-add "<app-footer></app-footer>" inside "app.component.html"
+add "&lt;app-footer&gt;&lt;/app-footer&gt;" inside "app.component.html"
 
 1. add class in footer.component.html
 ```shell
@@ -106,7 +106,7 @@ add "<app-footer></app-footer>" inside "app.component.html"
 ```shell
 ng g c footer --inline-template
 ```
-add "<app-students></app-students>" inside "app.component.html"
+add "&lt;app-students&gt;&lt;/app-students&gt;" inside "app.component.html"
 1. add class in "template" inside students.component.html
 ```shell
 @Component({
@@ -136,7 +136,7 @@ it generate only 2 files, they are
 |-- user.component.spec.ts 
 |-- user.component.ts 
 </pre>
-add "<app-user></app-user>" inside "app.component.html"
+add "&lt;app-user&gt;&lt;/app-user&gt;" inside "app.component.html"
 
 1. add "style" and "template" inside user.component.html
 ```shell
