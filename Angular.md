@@ -158,9 +158,66 @@ add "&lt;app-user&gt;&lt;/app-user&gt;" inside "app.component.html"
 })
 ```
 
-====================================================================
+========== module ==========================================================
+<pre>
+Concept Of Module
 
+module_1
+  |-- component_1
+  |-- component_2
+  |-- component_3
+  |-- component_4
+  
+module_2
+  |-- component_1
+  |-- component_2
+  |-- component_3
+  |-- component_4
+</pre>
 
+# Create Module
+```shell
+ng generate module user-auth
+```
+1. register module into the "app.module.ts" file [ import & register]
+```shell
+import { NgModule } from '@angular/core';
+import { BrowserModule } from '@angular/platform-browser';
+import { AppComponent } from './app.component';
+import { UserAuthModule } from './user-auth/user-auth.module';    // <-------
+
+@NgModule({
+  declarations: [
+    AppComponent,
+  ],
+  imports: [
+    BrowserModule,
+    UserAuthModule              // <-------
+  ],
+  providers: [],
+  bootstrap: [AppComponent]
+})
+export class AppModule { }
+```
+
+2. Component create inside the user-auth module
+```shell
+ng generate component user-auth/login
+```
+3. exports that Component from "user-auth.module.ts"
+```shell
+@NgModule({
+  declarations: [
+    LoginComponent
+  ],
+  imports: [
+    CommonModule
+  ],
+  exports: [                // <-------
+    LoginComponent
+  ]
+})
+```
 
 
 
