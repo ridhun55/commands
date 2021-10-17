@@ -26,7 +26,7 @@ ng serve
 ```shell
 package.json
 node_modules
-scr 
+src 
   |-- apps
   |-- assets
   |-- environments
