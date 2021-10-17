@@ -26,11 +26,11 @@ ng serve
 ```shell
 package.json
 node_modules
-scr folder
-|--- apps
-|--- assets
-|--- environments
-|--- index.html
-|--- main.js
-|--- style.css
+scr 
+  |-- apps
+  |-- assets
+  |-- environments
+  |-- index.html
+  |-- main.js
+  |-- style.css
 ```
