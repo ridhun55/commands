@@ -23,7 +23,6 @@ ng serve
 ```
 # File & Folder Structure
 
-```shell
 package.json
 node_modules
 src 
@@ -33,4 +32,6 @@ src
   |-- index.html
   |-- main.js
   |-- style.css
+```shell
+
 ```
