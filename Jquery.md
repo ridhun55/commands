@@ -23,6 +23,6 @@ A jQuery action() to be performed on the element(s)<br/>
 Examples:<br/>
 <br/>
 $(this).hide() - hides the current element.<br/>
-$("p").hide() - hides all <p> elements.<br/>
+$("p").hide() - hides all &lt;p&gt; elements.<br/>
 $(".test").hide() - hides all elements with class="test".<br/>
 $("#test").hide() - hides the element with id="test".<br/>
