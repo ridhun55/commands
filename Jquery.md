@@ -73,3 +73,78 @@ $(function(){
 </html>
 ```
 
+============================================
+
+# jQuery Selectors
+
+```shell
+1. The element Selector 
+
+  $("button").click(function(){
+      $("p").hide();
+  });
+    
+2. The #id Selector
+
+  $("button").click(function(){
+    $("#test").hide();
+  });
+
+3. The .class Selector
+
+  $("button").click(function(){
+    $(".test").hide();
+  });
+```
+
+# Other jQuery Selectors
+```shell
+$("*")                  - Selects all elements
+$(this)	                - Selects the current HTML element
+$("p.xyz")	            - Selects all <p> elements with class="xyz"
+$("p:first")	          - Selects the first <p> element
+$("ul li:first")        - Selects the first <li> element of the first <ul>
+$("a[target='_blank']") - Selects all <a> elements with a target attribute value equal to "_blank"
+```
+
+============================================
+# jQuery Event Methods
+
+<table class="ws-table-all notranslate">
+<tbody><tr>
+<th style="width:23%">Mouse Events</th>
+<th style="width:25%">Keyboard Events</th>
+<th style="width:22%">Form Events</th>
+<th>Document/Window Events</th>
+</tr>
+<tr>
+<td>click</td>
+<td>keypress</td>
+<td>submit</td>
+<td>load</td>
+</tr>
+<tr>
+<td>dblclick</td>
+<td>keydown</td>
+<td>change</td>
+<td>resize</td>
+</tr>
+<tr>
+<td>mouseenter</td>
+<td>keyup</td>
+<td>focus</td>
+<td>scroll</td>
+</tr>
+<tr>
+<td>mouseleave</td>
+<td>&nbsp;</td>
+<td>blur</td>
+<td>unload</td>
+</tr>
+</tbody></table>
+  
+  
+  
+  
+  
+  
