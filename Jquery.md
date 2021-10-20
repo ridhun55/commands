@@ -26,3 +26,44 @@ $(this).hide() - hides the current element.<br/>
 $("p").hide() - hides all &lt;p&gt; elements.<br/>
 $(".test").hide() - hides all elements with class="test".<br/>
 $("#test").hide() - hides the element with id="test".<br/>
+
+# Document Ready Event
+used to prevent any jQuery code running before the document is finished loading
+```shell
+$(document).ready(function(){
+
+  // jQuery methods go here...
+
+});
+
+in short hand methord
+
+$(function(){
+
+  // jQuery methods go here...
+
+});
+```
+
+<h3>Example 1</h3>
+```shell
+<!DOCTYPE html>
+<html>
+   <head>
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+      <script>
+         $(document).ready(function()
+         {
+           $("button").click(function()
+           {
+             $("h2").hide();
+           });
+         });
+      </script>
+   </head>
+   <body>
+      <h2>This is a heading</h2>
+      <button>Click me to hide heading</button>
+   </body>
+</html>
+```
