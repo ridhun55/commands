@@ -52,6 +52,7 @@ $(function(){
 <html>
    <head>
       <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+      
       <script>
          $(document).ready(function()
          {
@@ -61,10 +62,13 @@ $(function(){
            });
          });
       </script>
+      
    </head>
    <body>
+   
       <h2>This is a heading</h2>
       <button>Click me to hide heading</button>
+   
    </body>
 </html>
 ```
