@@ -45,7 +45,7 @@ $(function(){
 });
 ```
 
-Example 1 <br/>
+# Example : 1
 
 ```shell
 <!DOCTYPE html>
