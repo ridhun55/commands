@@ -47,24 +47,24 @@ $(function(){
 
 <h3>Example 1</h3>
 ```shell
-<!DOCTYPE html>
-<html>
-   <head>
-      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-      <script>
+&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+   &lt;head&gt;
+      &lt;script src=&quot;https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js&quot;&gt;&lt;/script&gt;
+      &lt;script&gt;
          $(document).ready(function()
          {
-           $("button").click(function()
+           $(&quot;button&quot;).click(function()
            {
-             $("h2").hide();
+             $(&quot;h2&quot;).hide();
            });
          });
-      </script>
-   </head>
-   <body>
-      <h2>This is a heading</h2>
-      <button>Click me to hide heading</button>
-   </body>
-</html>
+      &lt;/script&gt;
+   &lt;/head&gt;
+   &lt;body&gt;
+      &lt;h2&gt;This is a heading&lt;/h2&gt;
+      &lt;button&gt;Click me to hide heading&lt;/button&gt;
+   &lt;/body&gt;
+&lt;/html&gt;
 ```
 
