@@ -45,7 +45,7 @@ $(function(){
 });
 ```
 
-<h3>Example 1</h3>
+Example 1 <br/>
 ```shell
 &lt;!DOCTYPE html&gt;
 &lt;html&gt;
