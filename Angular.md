@@ -316,6 +316,77 @@ export class AppComponent {
 <h1 (mouseleave)="getData('MouserLeaved')">Mouse Leave Event</h1>
 ```
 
+=============================================
 
+# Get Input TextBox Value & Print
+
+```shell
+1. In "app.component.html"
+
+  <input #id_1 (keyup)="getInputValue(id_1.value)" />
+  <p>{{ printVar }}</p>
+
+2. In "app.component.ts"
+
+  export class AppComponent 
+  {
+    printVar = '';
+
+    getInputValue(data:string)
+    {
+      this.printVar = data;
+  }
+```
+
+# Get Input TextBox Value & Print with Button Click
+
+```shell
+1. In "app.component.html"
+
+  <input #id_1 />
+  <button (click)="getInputValue(id_1.value)">Print value</button>
+
+  <p>{{ printVar }}</p>
+
+2. In "app.component.ts"
+
+  export class AppComponent 
+  {
+    printVar = '';
+
+    getInputValue(data:string)
+    {
+      this.printVar = data;
+  }
+```
+
+# Up Down Counter
+
+```shell
+1. In "app.component.html"
+
+  <button #btn1 (click)="countFun('up')">Increment</button>
+  <p>Count : {{ count }}</p>
+  <button #btn2 (click)="countFun('down')">Decrement</button> 
+
+2. In "app.component.ts"
+
+  export class AppComponent {
+
+  count = 0;
+  countFun(c_type:string)
+  {
+    if(c_type==='up')
+    {
+      this.count = this.count + 1
+    }
+    else if(c_type==='down')
+    {
+      this.count = this.count - 1
+    }
+    
+  }
+}
+```
 
 
