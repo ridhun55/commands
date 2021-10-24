@@ -471,13 +471,68 @@ export class AppComponent {
   </div>
 ```
 
+# For Loop
+- Loop using inside html file - use angular loop
+- Loop using inside ts file - use javascript loop
 
+1.For loop inside html
+```shell
+1. In "app.component.ts"
 
+  export class AppComponent {
+  arr = ['red', 'blue', 'green', 'pink', 'black'];
+  }
+  
+2. In "app.component.html"
 
+  <h3 *ngFor = "let i of arr"> colour is : {{ i }} </h3>
+```
 
+```shell
+1. In "app.component.ts"
 
+  export class AppComponent {
+    obj = [
+        { label:'A', color:'red', code:'123' },
+        { label:'B', color:'blue', code:'456' },
+        { label:'C', color:'green', code:'789' },
+        { label:'D', color:'pink', code:'987' },
+        { label:'A', color:'black', code:'765' },
+      ]
+  }
+  
+2. In "app.component.html"
 
+  <h3 *ngFor = "let item of obj"> colour is : {{ item.label }} -- {{ item.color }} -- {{ item.code }}</h3>
+```
 
+# Nested For loop 
+```shell
+1. In "app.component.ts"
+
+  export class AppComponent {
+    obj = [
+        { label:'A', color:'red', code:'123', details:['abc', 'bca', 'cba']},
+        { label:'B', color:'blue', code:'456', details:['def', 'efd', 'fed']},
+        { label:'C', color:'green', code:'789', details:['ghi', 'hig', 'igh']},
+        { label:'D', color:'pink', code:'987', details:['qwe', 'weq', 'ewq']},
+        { label:'A', color:'black', code:'765', details:['zxc', 'xcz', 'czx']},
+      ]
+  }
+  
+2. In "app.component.html"
+  
+  <ul *ngFor = "let item of obj">
+    <li> {{ item.label }} </li>
+    <li> {{ item.color }} </li>
+    <li> {{ item.code }} </li>
+
+    <ul *ngFor = "let subitem of item.details">
+      <li> {{ subitem }} </li>
+    </ul>
+  </ul>
+  
+```
 
 
 
