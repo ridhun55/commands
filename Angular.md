@@ -396,6 +396,7 @@ export class AppComponent {
 
   export class AppComponent {
   flag = true;
+  }
   
 2. In "app.component.html"
 
@@ -408,7 +409,6 @@ export class AppComponent {
   <ng-template #Block2>
      <h1>Else condition section</h1>
   </ng-template>
-}
 ```
 
 ```shell
@@ -416,6 +416,7 @@ export class AppComponent {
 
   export class AppComponent {
   flag = "yes";
+  }
   
 2. In "app.component.html"
 
@@ -428,5 +429,56 @@ export class AppComponent {
   <ng-template #Block2>
      <h1>Else condition section</h1>
   </ng-template>
-}
 ```
+# Multiple If Else Condition
+```shell
+1. In "app.component.ts"
+
+  export class AppComponent {
+  color = "red";
+  }
+  
+2. In "app.component.html"
+
+  <ng-template [ngIf]="color === 'red'">
+     <h1 style="color:red"> Red color </h1>
+  </ng-template>
+
+  <ng-template [ngIf]="color === 'green'">
+     <h1 style="color:green"> Red Green </h1>
+  </ng-template>
+  
+  <ng-template [ngIf]="color === 'blue'">
+     <h1 style="color:blue"> Red blue </h1>
+  </ng-template>
+```
+
+# Switch case
+```shell
+1. In "app.component.ts"
+
+  export class AppComponent {
+  op = "red";
+  }
+  
+2. In "app.component.html"
+
+  <div [ngSwitch]="op">
+    <h1 *ngSwitchCase =" 'red' "> Red Color</h1>
+    <h1 *ngSwitchCase =" 'green' "> Green Color</h1>
+    <h1 *ngSwitchCase =" 'blue' "> Blue Color</h1>
+    <h1 *ngSwitchDefault > Default case </h1>
+  </div>
+```
+
+
+
+
+
+
+
+
+
+
+
+
