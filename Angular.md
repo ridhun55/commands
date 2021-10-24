@@ -389,4 +389,44 @@ export class AppComponent {
 }
 ```
 
+# If Else Condition
 
+```shell
+1. In "app.component.ts"
+
+  export class AppComponent {
+  flag = true;
+  
+2. In "app.component.html"
+
+  <h1 *ngIf="flag; then Block1 else Block2"></h1>
+
+  <ng-template #Block1>
+     <h1>If condition section</h1>
+  </ng-template>
+
+  <ng-template #Block2>
+     <h1>Else condition section</h1>
+  </ng-template>
+}
+```
+
+```shell
+1. In "app.component.ts"
+
+  export class AppComponent {
+  flag = "yes";
+  
+2. In "app.component.html"
+
+  <h1 *ngIf="flag=='yes'; then Block1 else Block2"></h1>
+
+  <ng-template #Block1>
+     <h1>If condition section</h1>
+  </ng-template>
+
+  <ng-template #Block2>
+     <h1>Else condition section</h1>
+  </ng-template>
+}
+```
