@@ -534,6 +534,40 @@ export class AppComponent {
   
 ```
 
+===========================================
 
+# Style Binding | Dynamic Style
 
+```shell
+1. In "app.component.ts"
+
+  export class AppComponent {
+    colorVar = 'red';
+  }
+  
+2. In "app.component.html"
+  
+  <h1 [style.color]="colorVar"> Text </h1>
+```
+
+```shell
+1. In "app.component.ts"
+
+  export class AppComponent {
+    colorVar = '';
+    bgVar = '';
+
+    updateFun()
+    {
+      this.colorVar = "red";
+      this.bgVar = "yellow"
+    }
+  }
+  
+2. In "app.component.html"
+  
+  <h1 [style.color]="colorVar" [style.backgroundColor]="bgVar"> Text </h1>
+
+  <button (click)="updateFun()"> update Colour</button>
+```
 
