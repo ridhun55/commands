@@ -9,7 +9,7 @@
 ```react.js
   npm start
 ```
-<h3>Install Router Package</h3>
+# Install Router Package
 ```react.js
   npm install react-router-dom
 ```
