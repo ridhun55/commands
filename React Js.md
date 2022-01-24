@@ -5,11 +5,11 @@ npx create-react-app my-app
 ```shell
 cd my-app
 ```
-run server
+<h3>run server</h3>
 ```shell
 npm start
 ```
-Install Router Package
+<h3>Install Router Package</h3>
 ```shell
 npm install react-router-dom
 ```
