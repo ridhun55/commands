@@ -1,9 +1,12 @@
+create a virtual environment 
 ```python
 python -m venv venv
 ```
+activate the virtual environment 
 ```python
 venv\Scripts\activate
 ```
+install django framework in the virtual environment 
 ```python
 pip install django
 ```
